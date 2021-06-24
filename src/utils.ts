@@ -4,6 +4,7 @@ export function findParentNode (target: HTMLElement, className: string): HTMLEle
       return target;
     }
   }
+  return target;
 }
 
 export function createItem (tagName: string, className: string, todoItem: string ): HTMLElement {
