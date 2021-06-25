@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import bodyParse from 'body-parser';
 import { readFile, writeFile } from './utils';
-import { ITodoData } from './typings';
+import { ITableData } from './typings';
 
 const app: Application = express();
 
@@ -14,26 +14,27 @@ app.all('*', (req, res, next) => {
   next();
 });
 
-app.get('/todolist', function (req, res) {
-  const todoList: string = readFile('todo.json');
-  res.send(todoList);
+app.get('/tabledata', function (req, res) {
+  const tabledata: string = readFile('table.json');
+  res.send(tabledata);
 });
 
-app.post('/toggle', function (req, res) {
-
-
-});
 
 app.post('/remove', function(req, res) {
   console.log(req)
-  const id: number = parseInt(req.body.id);
+  let tabledata: ITableData[] = JSON.parse(readFile('table.json') || '[]');
+  let body = req.body
+  let firstParam =""
+  for (const key in body) {
+    firstParam = key
+    break
+  }
+  firstParam = JSON.parse(firstParam)
+  const key = firstParam['key']
+  console.log("firstKey_______",key)
+  tabledata = tabledata.filter((list: ITableData) => list.key !== key);
 
-  let todoList: ITodoData[] = JSON.parse(readFile('todo.json') || '[]');
-
-  todoList = todoList.filter((todo: ITodoData) => todo.id !== id);
-
-  writeFile('todo.json', todoList);
-
+  writeFile('table.json', tabledata);
   res.send({
     msg: 'ok',
     statusCode: '200'
@@ -42,6 +43,10 @@ app.post('/remove', function(req, res) {
 });
 
 app.post('/add', function (req, res) {
+
+});
+
+app.post('/edit', function (req, res) {
 
 });
 

@@ -1,5 +1,7 @@
-export interface ITodoData {
-  id: number;
-  content: string;
-  completed: boolean;
+export interface ITableData {
+  key: number;
+  user: string;
+  state: string;
+  name: string;
+  time: string;
 }

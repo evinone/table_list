@@ -1,14 +1,11 @@
-import React from 'react';
-// import {Home, AddTableList} from './pages';
-import AddTableList from './pages/AddTableList';
-import 'antd/dist/antd.css';
-
+import Home from './pages/Home';
+import { withRouter } from 'react-router';
+import { AppProps } from './typings';
 
 function App() {
   return (
-    <div className="App">
-      {/* <Home /> */}
-      <AddTableList />
+    <div  className="App">
+      <Home/>
     </div>
   );
 }

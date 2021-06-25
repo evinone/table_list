@@ -7,7 +7,7 @@ return (
     <div>
       home
       <SelectTableList />
-      <TableList />
+      <TableList/>
     </div>
   )
   
